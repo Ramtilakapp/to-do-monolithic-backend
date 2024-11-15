@@ -6,6 +6,11 @@ const todosRouter = require('./routes/todos');
 
 const app = express();
 
+// Health check route for load balancer
+app.get('/health', (req, res) => {
+  res.status(200).send('Healthy'); // Respond with 200 OK if the server is running
+});
+
 // Configure CORS to accept requests only from the frontend URL
 app.use(cors({
   origin: process.env.FRONTEND_URL,
